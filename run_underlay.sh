@@ -33,7 +33,7 @@ function waitForSSH {
     time=$(($cur_time+$CHECK_TIMEOUT))
     LOG_FINISHED=$(nc -w 2 $server_ip 22; echo $?)
     if [ ${cur_time} -ge $BOOT_TIMEOUT ]; then
-      echo "Can't get to VM in $BOOT_TIMEOUT sec"
+      echo "Can't get to VM in $BOOT_TIMEOUT sec"/root/aio-vm.sh
       exit 1
     fi
   done
