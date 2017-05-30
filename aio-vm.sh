@@ -22,7 +22,7 @@ salt "$HOSTNAME" state.apply neutron
 salt "$HOSTNAME" state.apply ironic
 salt "$HOSTNAME" state.apply tftpd_hpa
 
-apt-get install python-ironicclient
+apt-get install -y python-ironicclient
 
 salt "$HOSTNAME" state.apply baremetal_simulator
 
