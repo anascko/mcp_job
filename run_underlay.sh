@@ -48,7 +48,7 @@ function main {
   local env_ip=$(get_ip_for_mac "$vm_mac")
 
   export MY_IP=$env_ip
-  export HOSTNAME=$(ENV_NAME).local
+  export HOSTNAME=$ENV_NAME.local
   #Change hostname
   execute_ssh_cmd ${env_ip} root r00tme "echo $ENV_NAME.local > /etc/hostname; \
   sed -i "s/devstack-generic/$ENV_NAME.local/g" /etc/hosts; \
