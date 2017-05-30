@@ -64,7 +64,7 @@ function main {
   local scp_opts='-oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no'
   sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh root@${env_ip}://root/aio-vm.sh
   
-  execute_ssh_cmd ${env_ip} root r00tme  "sh /root/ais-vm.sh"
+  execute_ssh_cmd ${env_ip} root r00tme  "sh /root/aio-vm.sh"
 
   echo "Done"
 
