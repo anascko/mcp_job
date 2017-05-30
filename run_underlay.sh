@@ -11,7 +11,6 @@ LOCK_FILE='/home/jenkins/loks/devstack-generic.lock'
 source /etc/profile.d/devstack-generic.sh
 
 export LC_ALL=C
-export HOSTNAME=$(ENV_NAME).local
 
 echo $ENV_NAME |grep -q "_" && (echo "Can't use char "_" in the hostname"; exit 1)
 [ -z "$LOCAL_CONF" ] && (echo "LOCAL_CONF can't be empty"; exit 1)
@@ -50,11 +49,11 @@ function main {
   local env_ip=$(get_ip_for_mac "$vm_mac")
 
   export MY_IP=$env_ip
-
+  export HOSTNAME=$(ENV_NAME).local
   #Change hostname
   execute_ssh_cmd ${env_ip} root r00tme "echo $(ENV_NAME).local > /etc/hostname; \
-  sed -i "s/devstack-generic/$ENV_NAME/g" /etc/hosts; \
-  hostname $ENV_NAME; (sleep 1; reboot) &"
+  sed -i "s/devstack-generic/$ENV_NAME.local/g" /etc/hosts; \
+  hostname $ENV_NAME.local; (sleep 1; reboot) &"
 
   sleep 15
 
@@ -64,7 +63,7 @@ function main {
 
   # Copy run underlay to ironic
   local scp_opts='-oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no'
-  sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh root@${env_ip}://root/ais-vm.sh
+  sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh root@${env_ip}://root/aio-vm.sh
   
   execute_ssh_cmd ${env_ip} root r00tme  "sh /root/ais-vm.sh"
 
