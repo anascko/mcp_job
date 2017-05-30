@@ -50,7 +50,7 @@ function main {
   export MY_IP=$env_ip
   export HOSTNAME=$(ENV_NAME).local
   #Change hostname
-  execute_ssh_cmd ${env_ip} root r00tme "echo $(ENV_NAME).local > /etc/hostname; \
+  execute_ssh_cmd ${env_ip} root r00tme "echo $ENV_NAME.local > /etc/hostname; \
   sed -i "s/devstack-generic/$ENV_NAME.local/g" /etc/hosts; \
   hostname $ENV_NAME.local; (sleep 1; reboot) &"
 
