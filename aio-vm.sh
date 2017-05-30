@@ -1,4 +1,5 @@
-t clone https://github.com/jumpojoy/mcp-underlay-aio /root/mcp-underlay-aio
+#!/bin/bash
+git clone https://github.com/jumpojoy/mcp-underlay-aio /root/mcp-underlay-aio
 bash /root/mcp-underlay-aio/scripts/aio-setup.sh
 
 cp /srv/salt/reclass/nodes/example-node.local.yml /srv/salt/reclass/nodes/$HOSTNAME.yml
