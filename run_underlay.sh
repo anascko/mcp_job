@@ -18,7 +18,7 @@ echo $ENV_NAME |grep -q "_" && (echo "Can't use char "_" in the hostname"; exit 
 
 SRC_VM="devstack-generic-$DISTRO_RELEASE"
 
-source /home/jenkins/workspace/devstack_generic/scripts/devstack-helpers.sh
+source ./devstack-helpers.sh
 
 
 function waitForSSH {
