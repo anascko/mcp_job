@@ -43,7 +43,7 @@ function main {
   local vm_mac=$(get_vm_mac $ENV_NAME $DEVSTACK_NET_NAME)
 
   virsh start ${ENV_NAME}
-  sleep 120 #
+  sleep 15 #
 
   local env_ip=$(get_ip_for_mac "$vm_mac")
 
