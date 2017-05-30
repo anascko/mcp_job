@@ -62,8 +62,7 @@ function main {
 
   bind_resources $LOCK_FILE $ENV_NAME $env_ip
 
-  # Copy local.conf to devstack
-  echo "$LOCAL_CONF"  > /tmp/${ENV_NAME}-local.conf
+  # Copy run underlay to ironic
   local scp_opts='-oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no'
   sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh root@${env_ip}://root/ais-vm.sh
   
