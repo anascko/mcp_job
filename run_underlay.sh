@@ -14,7 +14,7 @@ export LC_ALL=C
 
 echo $ENV_NAME |grep -q "_" && (echo "Can't use char "_" in the hostname"; exit 1)
 
-SRC_VM="devstack-generic-$DISTRO_RELEASE"
+SRC_VM="devstack-generic-ubuntu-xenial"
 
 source ./devstack-helpers.sh
 
