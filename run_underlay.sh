@@ -65,7 +65,7 @@ function main {
 
   # Copy run underlay to ironic
   local scp_opts='-oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no'
-  sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh  vars.conf root@${env_ip}://root/aio-vm.sh
+  sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh  vars.conf root@${env_ip}:/root/
   
   execute_ssh_cmd ${env_ip} root r00tme  "source  vars.conf; sh /root/aio-vm.sh"
 
