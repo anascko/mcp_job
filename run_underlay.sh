@@ -18,7 +18,6 @@ SRC_VM="devstack-generic-ubuntu-xenial"
 
 source ./devstack-helpers.sh
 
-
 function waitForSSH {
   local server_ip="$1"
   local BOOT_TIMEOUT=180
@@ -47,8 +46,12 @@ function main {
 
   local env_ip=$(get_ip_for_mac "$vm_mac")
 
-  export MY_IP=$env_ip
-  export HOSTNAME=$ENV_NAME.local
+  echo export RECLASS_SYSTEM_BRANCH=$RECLASS_SYSTEM_BRANCH >> vars.conf
+  echo export SALT_FORMULAS_IRONIC_BRANCH=$SALT_FORMULAS_IRONIC_BRANCH >> vars.conf
+  echo export SALT_FORMULAS_NEUTRON_BRANCH=$SALT_FORMULAS_NEUTRON_BRANCH >> vars.conf
+  echo export HOSTNAME=$ENV_NAME.local >> vars.conf
+  echo export MY_IP=$env_ip >> vars.conf
+
   #Change hostname
   execute_ssh_cmd ${env_ip} root r00tme "echo $ENV_NAME.local > /etc/hostname; \
   sed -i "s/devstack-generic/$ENV_NAME.local/g" /etc/hosts; \
@@ -62,9 +65,9 @@ function main {
 
   # Copy run underlay to ironic
   local scp_opts='-oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no'
-  sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh root@${env_ip}://root/aio-vm.sh
+  sshpass -p 'r00tme'  scp $scp_opts  aio-vm.sh  vars.conf root@${env_ip}://root/aio-vm.sh
   
-  execute_ssh_cmd ${env_ip} root r00tme  "sh /root/aio-vm.sh"
+  execute_ssh_cmd ${env_ip} root r00tme  "source  vars.conf; sh /root/aio-vm.sh"
 
   echo "Done"
 
