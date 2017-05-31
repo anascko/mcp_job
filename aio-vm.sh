@@ -41,7 +41,7 @@ port_address=$(openstack baremetal port list --node n1 -f value -c Address)
 vif_id=$(openstack port create --mac-address $port_address --network baremetal-flat-network n1-port -f value -c id)
 openstack baremetal port set $port_id --extra vif_port_id=$vif_id
 
-if [[ `ip netns list | wc -l` == "0"]]; then
+if [[ `ip netns list | wc -l` == "0" ]]; then
 systemctl restart neutron-dhcp-agent
 fi
 
