@@ -1,4 +1,10 @@
 #!/bin/bash
+echo $HOSTNAME
+echo $ENV   ENV
+echo $DEP_NAME "DEP_NAME"
+echo $SALT_FORMULAS_IRONIC_BRANCH "SALT_FORMULAS_IRONIC_BRANCH"
+
+
 git clone https://github.com/jumpojoy/mcp-underlay-aio /root/mcp-underlay-aio
 bash /root/mcp-underlay-aio/scripts/aio-setup.sh
 
