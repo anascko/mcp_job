@@ -1,9 +1,5 @@
 #!/bin/bash
-echo $HOSTNAME
-echo $ENV   ENV
-echo $DEP_NAME "DEP_NAME"
-echo $SALT_FORMULAS_IRONIC_BRANCH "SALT_FORMULAS_IRONIC_BRANCH"
-
+env
 
 git clone https://github.com/jumpojoy/mcp-underlay-aio /root/mcp-underlay-aio
 bash /root/mcp-underlay-aio/scripts/aio-setup.sh
@@ -14,6 +10,8 @@ sed -i s/#MY_IP/$MY_IP/ /srv/salt/reclass/nodes/$HOSTNAME.yml
 
 salt "$HOSTNAME" state.apply salt
 salt-call saltutil.refresh_pillar
+
+service salt-minion restart
 
 salt "$HOSTNAME" state.apply linux
 #salt "$HOSTNAME" state.apply ntp,openssh
