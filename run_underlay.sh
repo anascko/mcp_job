@@ -50,13 +50,13 @@ function main {
   echo export RECLASS_SYSTEM_BRANCH=$RECLASS_SYSTEM_BRANCH >> vars.conf
   echo export SALT_FORMULAS_IRONIC_BRANCH=$SALT_FORMULAS_IRONIC_BRANCH >> vars.conf
   echo export SALT_FORMULAS_NEUTRON_BRANCH=$SALT_FORMULAS_NEUTRON_BRANCH >> vars.conf
-  echo export HOSTNAME=$ENV_NAME.local >> vars.conf
+  echo export HOSTNAME=$ENV_NAME >> vars.conf
   echo export MY_IP=$env_ip >> vars.conf
 
   #Change hostname
-  execute_ssh_cmd ${env_ip} root r00tme "echo $ENV_NAME.local > /etc/hostname; \
-  sed -i "s/devstack-generic/$ENV_NAME.local/g" /etc/hosts; \
-  hostname $ENV_NAME.local; (sleep 1; reboot) &"
+  execute_ssh_cmd ${env_ip} root r00tme "echo $ENV_NAME > /etc/hostname; \
+  sed -i "s/devstack-generic/$ENV_NAME/g" /etc/hosts; \
+  hostname $ENV_NAME; (sleep 1; reboot) &"
 
   sleep 15
 
